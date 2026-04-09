@@ -8,10 +8,10 @@ import seaborn as sns
 stock_portfolio_performance = fetch_ucirepo(id=390)
 X = stock_portfolio_performance.data.features.copy()
 
-# --- 新增這一段：強制將所有欄位轉換為數字，無法轉換的會變成 NaN ---
+# 強制將所有欄位轉換為數字，無法轉換的會變成 NaN ---
 X = X.apply(pd.to_numeric, errors='coerce')
 
-# --- 新增這一段：處理缺失值（qcut 不能處理 NaN） ---
+# 處理缺失值（qcut 不能處理 NaN） ---
 # 選擇填補 0 或者刪除包含 NaN 的列
 X = X.fillna(0)
 
